@@ -19,7 +19,6 @@ Este repositório contém um guia para revisão de estudo detalhado para aprende
      return f"Olá, {nome}!"
 print(saudacao("Marcos"))
 ```
-📺 [Vídeo recomendado](https://www.youtube.com/watch?v=QRYzre4bf7I)  
 📜 [Documentação do Python](https://docs.python.org/pt-br/3/)
 
 ---
