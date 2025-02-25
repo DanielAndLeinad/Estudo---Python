@@ -53,7 +53,6 @@ driver.get("https://google.com")
 print(driver.title)
 driver.quit()
 ```
-📺 [Vídeo recomendado](https://www.youtube.com/watch?v=yiD09BpxaTo)  
 📜 [Selenium com Python](https://selenium-python.readthedocs.io/)
 
 ---
@@ -70,7 +69,6 @@ import requests
 resposta = requests.get("https://api.github.com")
 print(resposta.json())
 ```
-📺 [Vídeo recomendado](https://www.youtube.com/watch?v=pmMQLHVDw58)  
 📜 [Requests - HTTP para humanos](https://requests.readthedocs.io/en/latest/)
 
 ---
