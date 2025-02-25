@@ -35,7 +35,6 @@ with open("exemplo.txt", "w") as arquivo:
     arquivo.write("Conteúdo do arquivo.")
 print("Arquivo criado com sucesso!")
 ```
-📺 [Vídeo recomendado](https://www.youtube.com/watch?v=54r7XrkicJg)  
 📜 [Módulo `os`](https://docs.python.org/3/library/os.html)
 
 ---
