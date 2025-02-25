@@ -19,7 +19,6 @@ Este repositório contém um guia para revisão de estudo detalhado para aprende
      return f"Olá, {nome}!"
 print(saudacao("Marcos"))
 ```
-📺 [Vídeo recomendado](https://www.youtube.com/watch?v=QRYzre4bf7I)  
 📜 [Documentação do Python](https://docs.python.org/pt-br/3/)
 
 ---
@@ -36,7 +35,6 @@ with open("exemplo.txt", "w") as arquivo:
     arquivo.write("Conteúdo do arquivo.")
 print("Arquivo criado com sucesso!")
 ```
-📺 [Vídeo recomendado](https://www.youtube.com/watch?v=54r7XrkicJg)  
 📜 [Módulo `os`](https://docs.python.org/3/library/os.html)
 
 ---
@@ -55,7 +53,6 @@ driver.get("https://google.com")
 print(driver.title)
 driver.quit()
 ```
-📺 [Vídeo recomendado](https://www.youtube.com/watch?v=yiD09BpxaTo)  
 📜 [Selenium com Python](https://selenium-python.readthedocs.io/)
 
 ---
@@ -72,7 +69,6 @@ import requests
 resposta = requests.get("https://api.github.com")
 print(resposta.json())
 ```
-📺 [Vídeo recomendado](https://www.youtube.com/watch?v=pmMQLHVDw58)  
 📜 [Requests - HTTP para humanos](https://requests.readthedocs.io/en/latest/)
 
 ---
