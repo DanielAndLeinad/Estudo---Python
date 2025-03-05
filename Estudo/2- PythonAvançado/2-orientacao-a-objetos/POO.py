@@ -1,5 +1,6 @@
 # Este é um DOCUMENTO PROGRAMADO criado no dia 03/03/2025,com intuito de estudar POO em Python.
 # Autor: Marcos
+
 # Objetivo é simplemeste estudar POO em Python, e ajudar aqueles com algum tipo de dificuldade.
 # Este documento é livre para ser copiado,modificado e distribuido,desde que seja mantido o nome do autor e o link de origem.
 
@@ -95,7 +96,7 @@ class contaCorrente(contaBancaria):
         self.limite = limite
         
     def sacar(self, valor):
-        if valor <= self.salfo + self.limite:
+        if valor <= self.saldo + self.limite:
             self._saldo -= valor
             return f"Saque de R$ {valor} realizado com sucesso!"
         return "saldo insuficiente"
