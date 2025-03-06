@@ -1,12 +1,12 @@
 # 🚀 Guia de Estudo: Python para Automação
 
 ## 📌 Sobre
-Este repositório contém um guia para revisão de estudo detalhado para aprender **Python para Automação** em **2 horas**. Ele abrange desde os fundamentos da linguagem até automação web e consumo de APIs.
+Este repositório contém um guia para revisão de estudo detalhado para aprender **Python para Automação** em até **2 horas** caso você tenha uma base anterior, do contrario pode demorar um pouco mais. Ele abrange desde os fundamentos da linguagem até automação web e consumo de APIs.
 
 ---
 
 ## 📚 Conteúdo
-### 🔹 1. Fundamentos Essenciais do Python (30 minutos)
+### 🔹 1. Fundamentos Essenciais do Python 
 ✅ Sintaxe básica e estrutura do Python  
 ✅ Controle de fluxo (`if`, `for`, `while`)  
 ✅ Estruturas de dados (`list`, `tuple`, `dict`)  
@@ -23,7 +23,7 @@ print(saudacao("Marcos"))
 
 ---
 
-### 🔹 2. Manipulação de Arquivos (30 minutos)
+### 🔹 2. Manipulação de Arquivos 
 ✅ Criar, ler e escrever arquivos  
 ✅ Manipular pastas com `os` e `shutil`  
 
@@ -39,7 +39,7 @@ print("Arquivo criado com sucesso!")
 
 ---
 
-### 🔹 3. Automação Web com Selenium (30 minutos)
+### 🔹 3. Automação Web com Selenium 
 ✅ Acessar páginas automaticamente  
 ✅ Preencher formulários e buscar elementos  
 
@@ -57,7 +57,7 @@ driver.quit()
 
 ---
 
-### 🔹 4. Consumo de APIs com `requests` (30 minutos)
+### 🔹 4. Consumo de APIs com `requests` 
 ✅ Fazer requisições HTTP  
 ✅ Enviar e receber dados de uma API  
 
