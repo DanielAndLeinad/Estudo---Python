@@ -12,7 +12,7 @@ import csv
 # for = loop
 # linha = linha do arquivo
 # print = função que imprime a linha do arquivo
-with open("machine-readable-business-employment-data-sep-2024-quarter.csv", "r", encoding="utf-8") as arquivo:
+with open("teste.csv", "r", encoding="utf-8") as arquivo:
     leitor = csv.reader(arquivo)
     for linha in leitor:
         print(linha)
