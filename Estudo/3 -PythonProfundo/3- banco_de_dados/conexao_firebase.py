@@ -1,72 +1,37 @@
-# ==========================
-# CLASSE CARRO (Classe → Modelo para criar objetos)
-# ==========================
-class Carro:  # CLASSE: Define o modelo de um carro
-    """Classe que representa um carro."""
-    def __init__(self, marca, modelo, ano):  # MÉTODO: Construtor da classe
-        self.marca = marca
-        self.modelo = modelo
-        self.ano = ano
+"""
+# Automação com Python: Conexão com Firebase, MongoDB e MySQL
 
-    def descricao_carro(self):  # MÉTODO: Função que pertence à classe Carro
-        """Retorna uma descrição do carro."""
-        return f"{self.ano} {self.marca} {self.modelo}"
+## Introdução
+# Este material ensinará a conectar Python a três bancos de dados distintos:
+# Firebase (banco NoSQL na nuvem da Google)
+# MongoDB (banco de dados NoSQL orientado a documentos)
+# MySQL (banco de dados relacional SQL)
+# Cada seção terá uma explicação detalhada, exemplos comentados e um projeto prático ao final.
 
-# OBJETO: Criando um carro a partir da classe Carro
-meu_carro = Carro("Toyota", "Corolla", 2022)
+"""
 
-# MÉTODO SENDO CHAMADO: Usando o método descricao_carro() do objeto
-print(meu_carro.descricao_carro())  # Exibe a descrição do carro
+# Conexão com Firebase usando Python
 
-# ==========================
-# CLASSE PESSOA (Classe → Modelo para criar objetos)
-# ==========================
-class Pessoa:  # CLASSE: Define o modelo de uma pessoa
-    """Classe que representa uma pessoa."""
-    def __init__(self, nome, idade):  # MÉTODO: Construtor da classe
-        self.nome = nome
-        self.idade = idade
+# Instalando a biblioteca necessária:
+# pip install firebase-admin
 
-    def cumprimentar(self):  # MÉTODO: Função que pertence à classe Pessoa
-        """Retorna uma saudação da pessoa."""
-        return f"Olá, meu nome é {self.nome} e tenho {self.idade} anos."
+import firebase_admin
 
-# OBJETO: Criando uma pessoa a partir da classe Pessoa
-pessoa1 = Pessoa("Marcos", 21)
+from firebase_admin import credentials, firestore
 
-# MÉTODO SENDO CHAMADO: Usando o método cumprimentar() do objeto
-print(pessoa1.cumprimentar())  # Exibe a saudação
+# Carregar credenciais do Firebase
 
-# ==========================
-# CLASSE CACHORRO (Classe → Modelo para criar objetos)
-# ==========================
-class Cachorro:  # CLASSE: Define o modelo de um cachorro
-    """Classe que representa um cachorro."""
-    def __init__(self, nome, raca, idade):  # MÉTODO: Construtor da classe
-        self.nome = nome
-        self.raca = raca
-        self.idade = idade
+cred = credentials.Certificate("caminho/para/arquivo.json") # Substitua pelo caminho correto do arquivo JSON
+firebase_admin.initialize_app(cred)
 
-    def latir(self):  # MÉTODO: Função que pertence à classe Cachorro
-        """Simula um latido do cachorro."""
-        return f"{self.nome} ({self.raca}) está latindo: Au Au!"
+# Criar uma conexão com o Firestore
+db = firestore.client()
 
-# OBJETO: Criando um cachorro a partir da classe Cachorro
-meu_cachorro = Cachorro("Thor", "Labrador", 3)
+# Criar um novo documento no Firestore
+dados = {"nome": "João", "idade": 25, "cidade": "São Paulo"}
+db.collection("usuarios").document("usuario1").set(dados)
 
-# MÉTODO SENDO CHAMADO: Usando o método latir() do objeto
-print(meu_cachorro.latir())  # Exibe a ação do cachorro
-
-# ==========================
-# FUNÇÃO FORA DAS CLASSES (Função → Bloco de código independente)
-# ==========================
-def criar_carro(marca, modelo, ano):  # FUNÇÃO: Código que cria e retorna um objeto Carro
-    """Cria um objeto Carro e o retorna"""
-    carro = Carro(marca, modelo, ano)  # OBJETO: Criando um novo carro
-    return carro  # Retorna o carro criado
-
-# OBJETO: Criando um carro através da função
-meu_novo_carro = criar_carro("Chevrolet", "Cruze", 2019)
-
-# MÉTODO SENDO CHAMADO: Usando o método descricao_carro() do objeto criado pela função
-print(meu_novo_carro.descricao_carro())
+# Ler um documento do Firestore
+doc = db.collection("usuarios").document("usuario1").get()
+if doc.exists:
+    print("Dados do usuário:", doc.to_dict())

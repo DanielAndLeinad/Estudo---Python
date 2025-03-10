@@ -1,72 +1,57 @@
-# ==========================
-# CLASSE CARRO (Classe → Modelo para criar objetos)
-# ==========================
-class Carro:  # CLASSE: Define o modelo de um carro
-    """Classe que representa um carro."""
-    def __init__(self, marca, modelo, ano):  # MÉTODO: Construtor da classe
-        self.marca = marca
-        self.modelo = modelo
-        self.ano = ano
+'''
+Automação com Python - Material Didático
 
-    def descricao_carro(self):  # MÉTODO: Função que pertence à classe Carro
-        """Retorna uma descrição do carro."""
-        return f"{self.ano} {self.marca} {self.modelo}"
+Este documento abrange três áreas principais de automação com Python:
+1. Envio de e-mails
+2. Manipulação de arquivos
+3. Automação Web
 
-# OBJETO: Criando um carro a partir da classe Carro
-meu_carro = Carro("Toyota", "Corolla", 2022)
+Cada seção contém uma explicação teórica detalhada, exemplos de código bem comentados e links para a documentação oficial.
+No final, há um projeto prático que une todos os conceitos.
+'''
 
-# MÉTODO SENDO CHAMADO: Usando o método descricao_carro() do objeto
-print(meu_carro.descricao_carro())  # Exibe a descrição do carro
+'''
+Envio de E-mails com Python
 
-# ==========================
-# CLASSE PESSOA (Classe → Modelo para criar objetos)
-# ==========================
-class Pessoa:  # CLASSE: Define o modelo de uma pessoa
-    """Classe que representa uma pessoa."""
-    def __init__(self, nome, idade):  # MÉTODO: Construtor da classe
-        self.nome = nome
-        self.idade = idade
+Explicação:
+O envio de e-mails pode ser feito usando o módulo smtplib para SMTP e email.mime para formatar as mensagens.
 
-    def cumprimentar(self):  # MÉTODO: Função que pertence à classe Pessoa
-        """Retorna uma saudação da pessoa."""
-        return f"Olá, meu nome é {self.nome} e tenho {self.idade} anos."
+Pré-requisitos:
+- Uma conta de e-mail (ex: Gmail)
+- Ativar a autenticação para aplicativos menos seguros (caso necessário)
+- Instalar a biblioteca smtplib (já incluída no Python)
+'''
 
-# OBJETO: Criando uma pessoa a partir da classe Pessoa
-pessoa1 = Pessoa("Marcos", 21)
+import smtplib
 
-# MÉTODO SENDO CHAMADO: Usando o método cumprimentar() do objeto
-print(pessoa1.cumprimentar())  # Exibe a saudação
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-# ==========================
-# CLASSE CACHORRO (Classe → Modelo para criar objetos)
-# ==========================
-class Cachorro:  # CLASSE: Define o modelo de um cachorro
-    """Classe que representa um cachorro."""
-    def __init__(self, nome, raca, idade):  # MÉTODO: Construtor da classe
-        self.nome = nome
-        self.raca = raca
-        self.idade = idade
+# Configurações do e-mail
 
-    def latir(self):  # MÉTODO: Função que pertence à classe Cachorro
-        """Simula um latido do cachorro."""
-        return f"{self.nome} ({self.raca}) está latindo: Au Au!"
+EMAIL_REMETENTE = "seuemail@gmail.com"
+senha = "suasenha"
+EMAIL_DESTINATARIO = "destino@gmail.com"
 
-# OBJETO: Criando um cachorro a partir da classe Cachorro
-meu_cachorro = Cachorro("Thor", "Labrador", 3)
+# Criando a mensagem
 
-# MÉTODO SENDO CHAMADO: Usando o método latir() do objeto
-print(meu_cachorro.latir())  # Exibe a ação do cachorro
+msg = MIMEMultipart()
+msg["from"] = EMAIL_REMETENTE
+msg["to"] = EMAIL_DESTINATARIO
+msg["subject"] = "Teste automação"
 
-# ==========================
-# FUNÇÃO FORA DAS CLASSES (Função → Bloco de código independente)
-# ==========================
-def criar_carro(marca, modelo, ano):  # FUNÇÃO: Código que cria e retorna um objeto Carro
-    """Cria um objeto Carro e o retorna"""
-    carro = Carro(marca, modelo, ano)  # OBJETO: Criando um novo carro
-    return carro  # Retorna o carro criado
+# Corpo do e-mail
+corpo = "Este é um email de teste"
+msg.attach(MIMEText(corpo, "plain"))
 
-# OBJETO: Criando um carro através da função
-meu_novo_carro = criar_carro("Chevrolet", "Cruze", 2019)
+# Enviando o e-mail
 
-# MÉTODO SENDO CHAMADO: Usando o método descricao_carro() do objeto criado pela função
-print(meu_novo_carro.descricao_carro())
+try:
+    servidor = smtplib.SMTP("smtp.gmail.com", 587)
+    servidor.starttls()
+    servidor.login(EMAIL_REMETENTE, senha)
+    servidor.sendmail(EMAIL_REMETENTE, EMAIL_DESTINATARIO, msg.as_string())
+    servidor.quit()
+    print("E-mail enviado com sucesso")
+except Exception as e:
+    print(f"Erro ao enviar e-mail: {e}")

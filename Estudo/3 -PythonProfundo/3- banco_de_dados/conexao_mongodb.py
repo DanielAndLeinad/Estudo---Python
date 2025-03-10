@@ -1,18 +1,32 @@
-# HERENÇA, POLIMORFISMO, ENCAPSULAMENTO E ABSTRAÇÃO
+"""
+# Automação com Python: Conexão com Firebase, MongoDB e MySQL
 
-# HERANÇA
-# É um mecanismo que permite que uma classe herde atributos e métodos de outra classe.
-# A classe que herda é chamada de subclasse e a classe que é herdada é chamada de superclasse.
+## Introdução
+# Este material ensinará a conectar Python a três bancos de dados distintos:
+# Firebase (banco NoSQL na nuvem da Google)
+# MongoDB (banco de dados NoSQL orientado a documentos)
+# MySQL (banco de dados relacional SQL)
+# Cada seção terá uma explicação detalhada, exemplos comentados e um projeto prático ao final.
 
-# POLIMORFISMO
-# É a capacidade de um objeto poder ser referenciado de várias formas.
-# O polimorfismo permite que um objeto de uma subclasse seja tratado como um objeto de uma superclasse.
-# O polimorfismo é uma característica da orientação a objetos que permite que um objeto possa ser referenciado de várias formas.
+"""
+# Conexão com MongoDB usando Python
 
-# ENCAPSULAMENTO
-# É o mecanismo que restringe o acesso aos atributos e métodos de uma classe.
-# O encapsulamento é uma forma de proteger os atributos e métodos de uma classe, evitando que sejam acessados diretamente.
+# Instalando a biblioteca necessária:
+# pip install pymongo
 
-# ABSTRAÇÃO
-# É a capacidade de abstrair um objeto do mundo real.
-# A abstração é uma forma de simplificar um objeto do mundo real, tornando-o mais fácil de ser representado em um programa.
+from pymongo import MongoClient
+
+# Conectar ao servidor MongoDB
+client = MongoClient("mongodb://localhost:27017/")  # Substitua pelo endereço do seu MongoDB
+
+# Criar banco e coleção
+db = client["meu_banco"]
+colecao = db["usuarios"]
+
+# Inserir um documento no MongoDB
+dados = {"nome": "Maria", "idade": 30, "cidade": "Rio de Janeiro"}
+colecao.insert_one(dados)
+
+# Ler um documento do MongoD
+usuario = colecao.find_one({"nome": "Maris"})
+print("Dados dos usuarios", usuario)

@@ -1,18 +1,55 @@
-# HERENÇA, POLIMORFISMO, ENCAPSULAMENTO E ABSTRAÇÃO
+"""
+# Automação com Python: Conexão com Firebase, MongoDB e MySQL
 
-# HERANÇA
-# É um mecanismo que permite que uma classe herde atributos e métodos de outra classe.
-# A classe que herda é chamada de subclasse e a classe que é herdada é chamada de superclasse.
+## Introdução
+# Este material ensinará a conectar Python a três bancos de dados distintos:
+# Firebase (banco NoSQL na nuvem da Google)
+# MongoDB (banco de dados NoSQL orientado a documentos)
+# MySQL (banco de dados relacional SQL)
+# Cada seção terá uma explicação detalhada, exemplos comentados e um projeto prático ao final.
 
-# POLIMORFISMO
-# É a capacidade de um objeto poder ser referenciado de várias formas.
-# O polimorfismo permite que um objeto de uma subclasse seja tratado como um objeto de uma superclasse.
-# O polimorfismo é uma característica da orientação a objetos que permite que um objeto possa ser referenciado de várias formas.
+"""
 
-# ENCAPSULAMENTO
-# É o mecanismo que restringe o acesso aos atributos e métodos de uma classe.
-# O encapsulamento é uma forma de proteger os atributos e métodos de uma classe, evitando que sejam acessados diretamente.
+# Conexão com MySQL usando Python
 
-# ABSTRAÇÃO
-# É a capacidade de abstrair um objeto do mundo real.
-# A abstração é uma forma de simplificar um objeto do mundo real, tornando-o mais fácil de ser representado em um programa.
+# Instalando a biblioteca necessária:
+# pip install mysql-connector-python
+
+
+import mysql.connector
+
+# Criar conexão com o MySQL
+
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",  # Substitua pelo seu usuário do MySQL
+    password="sua_senha",
+    database="meu_banco"  # Substitua pelo seu banco de dados    
+    
+)
+
+cursor = conn.cursor()
+
+# Criar uma tabela (se não existir)
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(255),
+        idade INT,
+        cidade VARCHAR(255)
+    )
+""")
+
+# Inserir um usuário na tabela
+
+cursor.execute("INSERT INTO usuarios (nome, idade, cidade) VALUES (%s, %s, %s)", ("Carlos", 28, "Curitiba"))
+conn.commit()
+
+# Ler um usuário do banco
+cursor.execute("SELECT * FROM usuarios WHERE nome = 'Carlos'")
+usuario = cursor.fetchone()
+print("Dados do Usuario: ", usuario)
+
+# Fechar conexão
+cursor.close()
+conn.close()

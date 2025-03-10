@@ -1,18 +1,40 @@
-# HERENÇA, POLIMORFISMO, ENCAPSULAMENTO E ABSTRAÇÃO
+'''
+Automação com Python - Material Didático
 
-# HERANÇA
-# É um mecanismo que permite que uma classe herde atributos e métodos de outra classe.
-# A classe que herda é chamada de subclasse e a classe que é herdada é chamada de superclasse.
+Este documento abrange três áreas principais de automação com Python:
+1. Envio de e-mails
+2. Manipulação de arquivos
+3. Automação Web
 
-# POLIMORFISMO
-# É a capacidade de um objeto poder ser referenciado de várias formas.
-# O polimorfismo permite que um objeto de uma subclasse seja tratado como um objeto de uma superclasse.
-# O polimorfismo é uma característica da orientação a objetos que permite que um objeto possa ser referenciado de várias formas.
+Cada seção contém uma explicação teórica detalhada, exemplos de código bem comentados e links para a documentação oficial.
+No final, há um projeto prático que une todos os conceitos.
+'''
 
-# ENCAPSULAMENTO
-# É o mecanismo que restringe o acesso aos atributos e métodos de uma classe.
-# O encapsulamento é uma forma de proteger os atributos e métodos de uma classe, evitando que sejam acessados diretamente.
+'''
+Automação Web com Python (Selenium)
 
-# ABSTRAÇÃO
-# É a capacidade de abstrair um objeto do mundo real.
-# A abstração é uma forma de simplificar um objeto do mundo real, tornando-o mais fácil de ser representado em um programa.
+Explicação:
+O Selenium é uma biblioteca que permite interagir com páginas da web automaticamente.
+É necessário instalar o Selenium e um driver do navegador (ex: ChromeDriver para Google Chrome).
+'''
+
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Inicializando o navegador (certifique-se de que o ChromeDriver está instalado e no PATH)
+navegador = webdriver.Chrome()
+navegador.get("https://www.google.com")
+
+# Encontrando o campo de pesquisa e buscando algo
+campo_pesquisa = navegador.find_element("name", "q")
+campo_pesquisa.send_keys("Automação com Python")
+campo_pesquisa.send_keys(Keys.RETURN)
+
+time.sleep(5)  # Espera para ver os resultados
+
+# Fechando o navegador
+navegador.quit()
+
+print("Pesquisa realizada com sucesso!")
