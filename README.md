@@ -90,7 +90,8 @@ pip install selenium requests
 - "Python os module"
 - "Python Selenium Web Scraping"
 - "Python API requests examples"
-
+- 📜 [Python Selenium Tutorial - Automate Websites and Create Botss](https://www.youtube.com/watch?v=NB8OceGZGjA&pp=ygUQd2ViZHJpdmVyIHB5dGhvbg%3D%3D)
+- 📜 [Selenium - Automatize Qualquer Tarefa na Internet com Python](https://www.youtube.com/watch?v=71ECrViH_Ng&ab_channel=HashtagPrograma%C3%A7%C3%A3o)
 ---
 
 ## 🚀 Conclusão
