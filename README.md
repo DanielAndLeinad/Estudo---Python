@@ -2,7 +2,7 @@
 
 ## 📌 Sobre
 Este repositório contém um guia para revisão de estudo detalhado para aprender **Python para Automação** em até **2 horas** caso você tenha uma base anterior, do contrario pode demorar um pouco mais. Ele abrange desde os fundamentos da linguagem até automação web e consumo de APIs.
-### Obs: É recomendado estudar junto com a documentação de Python.
+### Obs: É recomendado estudar junto com a documentação do Python.
 ---
 
 ## 📚 Conteúdo
