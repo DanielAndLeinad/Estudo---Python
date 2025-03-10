@@ -1,0 +1,29 @@
+Vamos separar sobre em 4 arquivos. 
+Cada arquivo vai falar sobre um processo que faz parte do uso de uma API
+
+'''
+# 📌 Introdução às APIs e FastAPI com Python
+
+Este material cobre desde o consumo de APIs até a criação de APIs completas usando FastAPI.
+
+## 🔹 O que é uma API?
+API (Application Programming Interface) é um conjunto de regras que permite que sistemas diferentes se comuniquem.
+
+## 🔹 Instalando as dependências necessárias
+Antes de começar, precisamos instalar algumas bibliotecas essenciais.
+
+Abra o terminal e execute:
+```
+bash
+pip install fastapi uvicorn requests sqlalchemy sqlite3 passlib[bcrypt]
+
+```
+
+---
+
+Agora temos arquivos separados para:
+- `consumindo_api.py` → Consumindo APIs com `requests`
+- `criando_api_fastapi.py` → Criando uma API básica com FastAPI
+- `CRUD.py` → Implementação de um CRUD
+- `api&BD.py` → Conectando a um banco de dados SQLite
+- `autenticacao.py` → Implementando autenticação com hash de senhas
