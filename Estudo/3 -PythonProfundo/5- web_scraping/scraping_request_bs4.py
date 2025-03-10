@@ -1,72 +1,73 @@
-# ==========================
-# CLASSE CARRO (Classe → Modelo para criar objetos)
-# ==========================
-class Carro:  # CLASSE: Define o modelo de um carro
-    """Classe que representa um carro."""
-    def __init__(self, marca, modelo, ano):  # MÉTODO: Construtor da classe
-        self.marca = marca
-        self.modelo = modelo
-        self.ano = ano
+"""
+WEB SCRAPING COM REQUESTS E BEAUTIFULSOUP
 
-    def descricao_carro(self):  # MÉTODO: Função que pertence à classe Carro
-        """Retorna uma descrição do carro."""
-        return f"{self.ano} {self.marca} {self.modelo}"
+Este doc. aborda a extração de dados de paginas web de forma estatica, 
+utilizando bibliotecas request e beautifulsoup
 
-# OBJETO: Criando um carro a partir da classe Carro
-meu_carro = Carro("Toyota", "Corolla", 2022)
+"""
 
-# MÉTODO SENDO CHAMADO: Usando o método descricao_carro() do objeto
-print(meu_carro.descricao_carro())  # Exibe a descrição do carro
+# 1. Instalação das bibliotecas necessárias
+# Primeiro, presicamos instalar as bibliotecas request e beautifulsoup
+# Para isso, execute os seguintes comando no CMD/PROMPT
 
-# ==========================
-# CLASSE PESSOA (Classe → Modelo para criar objetos)
-# ==========================
-class Pessoa:  # CLASSE: Define o modelo de uma pessoa
-    """Classe que representa uma pessoa."""
-    def __init__(self, nome, idade):  # MÉTODO: Construtor da classe
-        self.nome = nome
-        self.idade = idade
+# pip install requests beautifulsoup4
 
-    def cumprimentar(self):  # MÉTODO: Função que pertence à classe Pessoa
-        """Retorna uma saudação da pessoa."""
-        return f"Olá, meu nome é {self.nome} e tenho {self.idade} anos."
+import requests
+from bs4 import BeautifulSoup
 
-# OBJETO: Criando uma pessoa a partir da classe Pessoa
-pessoa1 = Pessoa("Marcos", 21)
+# 2. FAZENDO UMA REQUISIÇÃO HTTP
+# Vamos fazer uma requisição para um site e obter o conteúdo HTML.
 
-# MÉTODO SENDO CHAMADO: Usando o método cumprimentar() do objeto
-print(pessoa1.cumprimentar())  # Exibe a saudação
+url = "https://books.toscrape.com/"  # Site de exemplo com livros disponíveis para scraping
+response = requests.get(url) # Fazendo a requisição GET para a URL
 
-# ==========================
-# CLASSE CACHORRO (Classe → Modelo para criar objetos)
-# ==========================
-class Cachorro:  # CLASSE: Define o modelo de um cachorro
-    """Classe que representa um cachorro."""
-    def __init__(self, nome, raca, idade):  # MÉTODO: Construtor da classe
-        self.nome = nome
-        self.raca = raca
-        self.idade = idade
+# Verificando se a requisição foi bem-sucedida (código 200)
 
-    def latir(self):  # MÉTODO: Função que pertence à classe Cachorro
-        """Simula um latido do cachorro."""
-        return f"{self.nome} ({self.raca}) está latindo: Au Au!"
+if response.status_code == 200:
+    html_content = response.text # Obtendo o conteúdo HTML da página
+    print("Requisição bem-sucedida! HTML obtido.")
+else:
+    print(f"Erro na requisição: {response.status_code}") 
+    
+# 3. PARSEANDO O HTML COM BEAUTIFULSOUP
+# Agora vamos analisar o HTML e extrair informações específicas.
 
-# OBJETO: Criando um cachorro a partir da classe Cachorro
-meu_cachorro = Cachorro("Thor", "Labrador", 3)
+soup = BeautifulSoup(html_content, "html_parser")  # Criando o objeto BeautifulSoup
 
-# MÉTODO SENDO CHAMADO: Usando o método latir() do objeto
-print(meu_cachorro.latir())  # Exibe a ação do cachorro
+# Extraindo o título da página
+page_title = soup.title.text  # Obtendo o texto dentro da tag <title>
+print(f"Título da página: {page_title}")
 
-# ==========================
-# FUNÇÃO FORA DAS CLASSES (Função → Bloco de código independente)
-# ==========================
-def criar_carro(marca, modelo, ano):  # FUNÇÃO: Código que cria e retorna um objeto Carro
-    """Cria um objeto Carro e o retorna"""
-    carro = Carro(marca, modelo, ano)  # OBJETO: Criando um novo carro
-    return carro  # Retorna o carro criado
+# 4. EXTRAINDO DADOS ESPECÍFICOS
+# Vamos extrair os títulos dos livros exibidos na página inicial do site.
 
-# OBJETO: Criando um carro através da função
-meu_novo_carro = criar_carro("Chevrolet", "Cruze", 2019)
+books = soup.find_all("h3")  # Buscando todas as tags <h3>, que contêm os títulos dos livros
 
-# MÉTODO SENDO CHAMADO: Usando o método descricao_carro() do objeto criado pela função
-print(meu_novo_carro.descricao_carro())
+print ("Lista de livros disponiveis: ")
+for book in books:
+    book_title = book.a["title"] # Extraindo o título do livro da tag <a>
+    print(f"- {book_title}")
+    
+# 5. PROJETO PRÁTICO: EXTRAÇÃO DE TÍTULOS E PREÇOS
+# Vamos agora extrair os títulos e preços dos livros e armazená-los em uma lista.
+
+book_data = []  # Lista para armazenar os dados
+
+for book in soup.find_all("article", class_ = "product_pod"):
+    title = book.h3.a["title"]  # Obtendo o título do livro
+    price = book.find("p", class_="price_color").text  # Obtendo o preço do livro
+    book_data.append({"Titulo": title, "Preço": price})
+
+# Exibindo os resultados
+print("\nLista de livros e preços:")
+for item in book_data:
+    print(f"{item['Título']} - {item['Preço']}")
+
+
+
+'''
+REFERÊNCIAS:
+- Documentação oficial do requests: https://docs.python-requests.org/en/latest/
+- Documentação oficial do BeautifulSoup: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+- Site de teste para scraping: https://books.toscrape.com/
+'''
