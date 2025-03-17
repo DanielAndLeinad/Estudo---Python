@@ -1,0 +1,8 @@
+Cada arquivo é um passo-a-passo.
+Separmos em 3 arquivos.
+tetris.py = cria a tela preta
+tetris1.py = cria a grade
+tetris3.py = parte do jogo
+tetris4.py = completo
+
+mexe com as setinhas(esquerda, direta e cima) e confirma com z 
